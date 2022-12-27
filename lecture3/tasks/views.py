@@ -17,11 +17,11 @@ def index(request):
     })
 
 def add(request):
-    if request.method == "POST":            #check if the request method is POST
-        form = NewTaskForm(request.POST)    #Set all the input data to a variable
-        if form.is_valid():                 #chcek if all the form data is valid
-            task = form.cleaned_data["task"]    # If so retrieve the task 
-            request.session["tasks"] += [task]                # Add the task to the list of tasks
+    if request.method == "POST":                                #check if the request method is POST
+        form = NewTaskForm(request.POST)                        #Set all the input data to a variable
+        if form.is_valid():                                     #chcek if all the form data is valid
+            task = form.cleaned_data["task"]                    # If so retrieve the task 
+            request.session["tasks"] += [task]                  # Add the task to the list of tasks
             return HttpResponseRedirect(reverse("tasks:index"))
         else:
             return render(request, "tasks.html", {"form": form})
